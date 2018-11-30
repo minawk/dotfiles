@@ -18,6 +18,7 @@ Plugin 'VundleVim/Vundle.vim'
 " Colorsheme
 Plugin 'morhetz/gruvbox'
 Plugin 'jnurmine/Zenburn'
+Plugin 'altercation/vim-colors-solarized'
 
 " Live editing
 Plugin 'jaxbot/browserlink.vim'
@@ -38,27 +39,35 @@ Plugin 'NLKNguyen/pipe-mysql.vim'
 " Plugin 'lyuts/vim-rtags'
 " Plugin 'greyblake/vim-preview'
 Plugin 'mattn/emmet-vim' " For html and css
+let g:user_emmet_settings={'javascript.jsx': {'extends':'jsx'}}
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'nelstrom/vim-visual-star-search'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-abolish'
-" Plugin 'tpope/vim-repeat' " Can repeat plugins actions
+Plugin 'tpope/vim-repeat' " Can repeat plugins actions
 Plugin 'tpope/vim-commentary' " Comment easily. For html emmet can do the job
+Plugin 'godlygeek/tabular'
+Plugin 'benmills/vimux'
 packadd! matchit " It ships with Vim. We just enable it.
 
 " Status bar
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'stephenmckinney/vim-solarized-powerline'
+let g:Powerline_theme='short'
+let g:Powerline_colorscheme='solarized256_dark'
 
 " Auto completion ------------- {{{
 Plugin 'Valloric/YouCompleteMe'
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/.ycm_extra_conf.py'
+let g:ycm_complete_in_strings = 1 "default 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 1 "get data from string and comments
+let g:ycm_seed_identifiers_with_syntax = 1 "get data from syntax of language
 let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_enable_diagnostic_signs = 1
 let g:ycm_enable_diagnostic_highlighting = 0
 let g:ycm_always_populate_location_list = 1 "default 0
 let g:ycm_open_loclist_on_ycm_diags = 1 "default 1
-let g:ycm_complete_in_strings = 1 "default 1
 let g:ycm_collect_identifiers_from_tags_files = 0 "default 0
 let g:ycm_path_to_python_interpreter = '/usr/bin/python'
 let g:ycm_server_use_vim_stdout = 0 "default 0 (logging to console)
@@ -134,7 +143,7 @@ let g:mta_filetypes = {'html' : 1, 'xhtml' : 1, 'xml' : 1, 'jinja' : 1,'php' : 1
 highlight MatchTag ctermfg=black ctermbg=lightgreen guifg=black guibg=lightgreen
 call vundle#end()            " required
 if has("autocmd")
-filetype plugin indent on    " required
+    filetype plugin indent on    " required
 endif
 " }}}
 
@@ -144,15 +153,15 @@ set viminfo='10,\"100,:20,%,n~/.viminfo
 " For restoring last line for last editing
 " See :h line(), :h '" for more info.
 function! ResCur()
-if line("'\"") <= line("$")
-normal! g`"
-return 1
-endif
+    if line("'\"") <= line("$")
+        normal! g`"
+        return 1
+    endif
 endfunction
 
 augroup resCur
-autocmd!
-autocmd BufWinEnter * call ResCur()
+    autocmd!
+    autocmd BufWinEnter * call ResCur()
 augroup END
 " }}}
 
@@ -178,6 +187,7 @@ set showcmd
 set laststatus=2
 set noshowmode " Don't show mode, already shown by powerline plugin.
 set mouse=n " Mouse only on normal mode.
+set synmaxcol=500 " Don't try to hightlight lines longer that 500 caracters
 
 set incsearch
 set hlsearch
@@ -209,11 +219,38 @@ set softtabstop=4
 set shiftwidth=4
 set backspace=2
 
+set scrolloff=3       " Always show at least three lines below cursor
+set mat=3             " Blink matching brackets for 3 tenths of a second
+set visualbell t_vb=  " No Noise or bell
+
+
 let g:html_indent_inctags="head,body,tbody"
 let g:html_indent_style1 = "inc"
 " }}}
 
 " Basic Mapping ------------------------- {{{
+"
+"" Tabularise shortcuts
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:\zs<CR>
+vmap <Leader>a: :Tabularize /:\zs<CR>
+
+" Git
+" Highlight VCS conflict markers
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+" Search for merge conflict markers
+nnoremap <silent> <leader>sgc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
+" Grab a github link from current selection
+vnoremap <leader>G :Gbrowse!<cr>
+
+" Switch to last buffer
+nnoremap <leader><tab> <c-^>
+
+" Indent or outdent and maintain selection in visual mode
+vnoremap >> >gv
+vnoremap << <gv
+
 " Python helping map "
 nnoremap <silent> <leader>ph :!help.py <cword><cr>
 " Youcompleteme mapping
@@ -281,11 +318,11 @@ cnoreabbrev wsudo w !sudo tee % > /dev/null<cr>
 
 " Tab mapping
 augroup mapping_tab
-autocmd!
-autocmd TabLeave * let g:lasttab = tabpagenr()
-" Go to the last active tab
-nnoremap <silent> gl :execute "tabnext ".g:lasttab<cr>
-vnoremap <silent> gl :execute "tabnext ".g:lasttab<cr>
+    autocmd!
+    autocmd TabLeave * let g:lasttab = tabpagenr()
+    " Go to the last active tab
+    nnoremap <silent> gl :execute "tabnext ".g:lasttab<cr>
+    vnoremap <silent> gl :execute "tabnext ".g:lasttab<cr>
 augroup END
 
 " Edit last buffer in vertical split.
@@ -302,11 +339,11 @@ nnoremap <leader>ck <c-w>k:x!<cr>
 
 " Toggle background
 function! Tooglebg()
-	if &l:background ==# 'dark'
-		set background=light
-	else
-		set background=dark
-	endif
+    if &l:background ==# 'dark'
+        set background=light
+    else
+        set background=dark
+    endif
 endfunction
 nnoremap <F9> :call Tooglebg()<cr>
 
@@ -331,23 +368,35 @@ inoreabbrev ccopy Copyright 2018 Minawk, all rights reserved.
 
 " Autocmd and Filetype  -------------------- {{{
 augroup mysql_filetype
-	autocmd!
-	autocmd BufNewFile,BufRead *.sql set filetype=mysql
-	autocmd BufNewFile,BufRead *.sql set filetype=sql
+    autocmd!
+    autocmd BufNewFile,BufRead *.sql set filetype=mysql
+    autocmd BufNewFile,BufRead *.sql set filetype=sql
 augroup END
 
 augroup global_filetype
-	autocmd!
-	autocmd FileType js,javascript,php,html,css,sql,mysql setlocal tabstop=2 softtabstop=2 shiftwidth=2 backspace=2
-	autocmd Filetype html,javascript setlocal nowrap 
-	autocmd FileType python setlocal foldmethod=indent textwidth=100
-	autocmd FileType vim setlocal foldmethod=marker
-	autocmd FileType vb setlocal commentstring='\ %s
+    autocmd!
+    autocmd FileType js,javascript,php,html,css,sql,mysql setlocal tabstop=2 softtabstop=2 shiftwidth=2 backspace=2
+    autocmd Filetype html,javascript setlocal nowrap 
+    autocmd FileType python setlocal foldmethod=indent textwidth=100
+    autocmd FileType vim setlocal foldmethod=marker
+    autocmd FileType vb setlocal commentstring='\ %s
 augroup END
 
 augroup filetype_markdown
-	autocmd!
-	autocmd Filetype markdown onoremap <buffer> ih :<c-u>execute "normal! ?^==\\+$\r:nohlsearch\rkvg_"<cr>
-	autocmd Filetype markdown onoremap <buffer> ah :<c-u>execute "normal! ?^==\\+$\r:nohlsearch\rg_vk0"<cr>
+    autocmd!
+    autocmd Filetype markdown onoremap <buffer> ih :<c-u>execute "normal! ?^==\\+$\r:nohlsearch\rkvg_"<cr>
+    autocmd Filetype markdown onoremap <buffer> ah :<c-u>execute "normal! ?^==\\+$\r:nohlsearch\rg_vk0"<cr>
 augroup END
 " }}}
+
+" Auto align when inserting `|`
+function! s:align()
+  let p = '^\s*|\s.*\s|\s*$'
+  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    Tabularize/|/l1
+    normal! 0
+    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  endif
+endfunction

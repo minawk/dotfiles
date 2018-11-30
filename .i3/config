@@ -1,20 +1,21 @@
 # RGB
-set $cyan0	 #4ec2f7
+set $cyan0    #06444c
+# set $cyan0	 #4ec2f7
 set $silver0 #e4e4e4
 set $orange  #ff8700
 
 # RGBA
-set $cyan	   #4ec2f799
+set $cyan	   #4ec2f7
 set $acqua	 #00708999
 set $wine 	 #72003e99
 set $magenta #af005f99
 set $silver  #e4e4e499
 set $toxic   #8EC00099
-# set $elegant #00002c00
+# set $elegant #00002c
 set $elegant #002636
 
 # Set some nice colors      border	 background text	   indicator
-client.focused              $cyan	   $cyan      $elegant $cyan
+client.focused              $cyan0	   $cyan0   $silver0 $cyan0
 client.unfocused            $elegant $elegant   $cyan    $elegant
 client.focused_inactive     $acqua   $acqua     $silver  $acqua
 client.urgent               $magenta $magenta   $silver  $magenta
@@ -57,6 +58,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+F9 exec xkill # usin xkill
 
 bindsym $mod+Shift+f exec firefox
+bindsym $mod+Shift+x exec chromium
 bindsym $mod+Shift+e exec urxvt -e ranger
 # bindsym $mod+F10 exec toggle-redshift
 
@@ -176,7 +178,6 @@ bindsym $mod+Shift+F1 exec ~/.scripts/lockscreen
 # resize window (you can also use the mouse for that)
 mode "resize" {
 # These bindings trigger as soon as you enter the resize mode
-
 # Pressing left will shrink the window’s width.
 # Pressing right will grow the window’s width.
 # Pressing up will shrink the window’s height.
@@ -226,9 +227,9 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 #Disable window titlebars entirely
-for_window [class="^.*"] border pixel 2
-# gaps inner 2
-# gaps outer 2
+for_window [class="^.*"] border pixel 1
+gaps inner 6
+gaps outer 6
 bindsym $mod+Shift+t	gaps inner current set 2; gaps outer current set 2
 bindsym $mod+Shift+d	gaps inner current set 0; gaps outer current set 0
 bindsym $mod+minus	gaps inner current plus 2
@@ -269,5 +270,6 @@ for_window [class="Firefox"] gaps inner $ws2 set 0; gaps outer $ws2 set 0
 for_window [class="URxvt" instance="floating"] floating enable
 for_window [class="*" instance="floating"] floating enable
 assign [class="Firefox"] $ws2
+assign [class="Chromium"] $ws2
 assign [class="Thunderbird"] $ws3
 assign [class="jetbrains-studio"] $ws3
