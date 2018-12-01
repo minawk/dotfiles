@@ -48,6 +48,7 @@ Plugin 'tpope/vim-repeat' " Can repeat plugins actions
 Plugin 'tpope/vim-commentary' " Comment easily. For html emmet can do the job
 Plugin 'godlygeek/tabular'
 Plugin 'benmills/vimux'
+Plugin 'mbbill/undotree'
 packadd! matchit " It ships with Vim. We just enable it.
 
 " Status bar
@@ -106,7 +107,7 @@ Plugin 'Vimjas/vim-python-pep8-indent'
 " Plugin 'fedorenchik/qt-support.vim' " Qt syntax support
 Plugin 'mxw/vim-jsx'
 " let g:jsx_ext_required = 0
-Plugin 'elzr/vim-json'
+" Plugin 'elzr/vim-json'
 Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'pangloss/vim-javascript'
 " Plugin 'StanAngeloff/php.vim'
