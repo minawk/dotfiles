@@ -1,0 +1,19 @@
+set editing-mode vi
+set show-mode-in-prompt on
+set vi-ins-mode-string "[insert]"
+set vi-cmd-mode-string "[normal]"
+$if mode=vi
+	set keymap vi-command
+	"i":vi-insertion-mode
+	v:""
+	L:end-of-line
+	H:beginning-of-line
+	Control-l:clear-screen
+
+	set keymap vi-insert
+	"jk":vi-movement-mode
+	Control-l:clear-screen
+	Control-p:previous-history
+	Control-n:next-history
+
+$endif
