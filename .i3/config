@@ -1,6 +1,9 @@
 # RGB
-set $cyan0    #06444c
-# set $cyan0	 #4ec2f7
+set $darkgrey1 #282828
+set $darkgrey2 #928374
+set $lightgrey1 #a89984
+set $lightgrey2 #ebdbb2
+set $cyan0    #689d6a
 set $silver0 #e4e4e4
 set $orange  #ff8700
 
@@ -11,15 +14,15 @@ set $wine 	 #72003e99
 set $magenta #af005f99
 set $silver  #e4e4e499
 set $toxic   #8EC00099
-# set $elegant #00002c
 set $elegant #002636
 
-# Set some nice colors      border	 background text	   indicator
-client.focused              $cyan0	   $cyan0   $silver0 $cyan0
-client.unfocused            $elegant $elegant   $cyan    $elegant
-client.focused_inactive     $acqua   $acqua     $silver  $acqua
-client.urgent               $magenta $magenta   $silver  $magenta
-client.placeholder          $magenta $magenta   $silver  $magenta
+# Set some nice colors      border	   background text	      indicator
+client.focused              $darkgrey1 $darkgrey2 $darkgrey1  $orange $lightgrey1
+client.unfocused            $darkgrey1 $darkgrey1 $lightgrey1 $cyan0
+client.focused_inactive     $orange     $acqua     $silver     $acqua
+client.placeholder          $magenta   $magenta   $silver     $magenta
+client.urgent               $magenta   $magenta   $silver     $magenta
+client.background #ffffff
 
 set $mod Mod4
 
@@ -28,45 +31,53 @@ new_window pixel
 
 font xft:Roboto Nerd Font 9
 
+# Cusotmize title
+for_window [class=".*"] title_format "<b>%class - </b><span> %title</span>"
+title_align center
+
 # Start i3blocks to display a workspace bar
 bar
 {
-	position top
-		status_command i3blocks
-		i3bar_command i3bar -t
-		font pango: SauceCodePro Nerd Font Black 10
-		tray_output primary
-		colors
-		{
-# Border	# Background	# Text
-			focused_workspace   $silver0  $silver0  $elegant
-				active_workspace    $elegant  $elegant  $orange
-				inactive_workspace  $elegant  $elegant 	$cyan0
-				urgent_workspace    $acqua    $acqua    $silver0
-				background          $elegant
-		}
+    position top
+        status_command i3blocks
+        i3bar_command i3bar -t
+        # font pango: SauceCodePro Nerd Font Black 10
+        font pango: RobotoMono Nerd Font Black 10
+        tray_output primary
+        tray_padding 2
+        colors
+        {
+            # Whole color settings
+            background #1d2021
+            statusline #ebdbb2
+            separator  #666666
+
+                               #Border     #Background #Text
+            focused_workspace  $lightgrey1 $lightgrey1 $darkgrey1
+            inactive_workspace #1d2021     #1d2021     $orange
+            urgent_workspace   #fb4934     #fb4934     #504945
+        }
 }
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec termite
 
 # kill focused window
 bindsym $mod+Shift+q kill
 bindsym $mod+F9 exec xkill # usin xkill
 
-bindsym $mod+Shift+f exec firefox
-bindsym $mod+Shift+x exec chromium
-bindsym $mod+Shift+e exec urxvt -e ranger
+bindsym $mod+Shift+f exec chromium
+bindsym $mod+Shift+x exec firefox
 # bindsym $mod+F10 exec toggle-redshift
 
 # start dmenu (a program launcher)
-# bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec --no-startup-id dmenu_run
 
 # Start rofi
-bindsym $mod+d exec rofi -show drun
+# bindsym $mod+d exec rofi -show drun
 
 # change focus vim mode
 bindsym $mod+h focus left
@@ -130,6 +141,8 @@ set $ws10 "10"
 
 
 # focus_on_last_workspace
+popup_during_fullscreen smart
+show_marks yes
 workspace_auto_back_and_forth yes
 bindsym $mod+Tab workspace back_and_forth
 
@@ -182,21 +195,21 @@ mode "resize" {
 # Pressing right will grow the window’s width.
 # Pressing up will shrink the window’s height.
 # Pressing down will grow the window’s height.
-	bindsym h resize shrink width 5 px or 5 ppt
-		bindsym j resize grow height 5 px or 5 ppt
-		bindsym k resize shrink height 5 px or 5 ppt
-		bindsym l resize grow width 5 px or 5 ppt
+    bindsym h resize shrink width 5 px or 5 ppt
+        bindsym j resize grow height 5 px or 5 ppt
+        bindsym k resize shrink height 5 px or 5 ppt
+        bindsym l resize grow width 5 px or 5 ppt
 
 # same bindings, but for the arrow keys
-		bindsym Left resize shrink width 5 px or 5 ppt
-		bindsym Down resize grow height 5 px or 5 ppt
-		bindsym Up resize shrink height 5 px or 5 ppt
-		bindsym Right resize grow width 5 px or 5 ppt
+        bindsym Left resize shrink width 5 px or 5 ppt
+        bindsym Down resize grow height 5 px or 5 ppt
+        bindsym Up resize shrink height 5 px or 5 ppt
+        bindsym Right resize grow width 5 px or 5 ppt
 
 # back to normal: Enter or Escape
-		bindsym Return mode "default"
-		bindsym Escape mode "default"
-		bindsym $mod+r mode "default"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
 }
 
 bindsym $mod+r mode "resize"
@@ -228,8 +241,8 @@ bindsym XF86AudioPrev exec playerctl previous
 
 #Disable window titlebars entirely
 for_window [class="^.*"] border pixel 1
-gaps inner 6
-gaps outer 6
+gaps inner 5
+gaps outer 5
 bindsym $mod+Shift+t	gaps inner current set 2; gaps outer current set 2
 bindsym $mod+Shift+d	gaps inner current set 0; gaps outer current set 0
 bindsym $mod+minus	gaps inner current plus 2
@@ -242,6 +255,7 @@ bindsym Print exec scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f ~/Pictures
 bindsym $mod+Print exec gnome-screenshot -i
 
 # exec_always --no-startup-id ~/.monitor.sh # Automatically switch within monitors
+exec --no-startup-id conky
 exec --no-startup-id dunst
 exec --no-startup-id notify-send "Welcome back Minawk!" # Greeting on startup
 exec --no-startup-id nitrogen --restore; sleep 1;

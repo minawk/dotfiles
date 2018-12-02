@@ -10,6 +10,7 @@ set encoding=utf-8
 filetype off                  " required by Vundle
 
 set runtimepath+=~/.vim/bundle/Vundle.vim
+set path+=**
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
@@ -17,8 +18,9 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Colorsheme
 Plugin 'morhetz/gruvbox'
-Plugin 'jnurmine/Zenburn'
 Plugin 'altercation/vim-colors-solarized'
+" Plugin 'crusoexia/vim-dracula'
+Plugin 'dracula/vim'
 
 " Live editing
 Plugin 'jaxbot/browserlink.vim'
@@ -52,10 +54,22 @@ Plugin 'mbbill/undotree'
 packadd! matchit " It ships with Vim. We just enable it.
 
 " Status bar
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plugin 'stephenmckinney/vim-solarized-powerline'
-let g:Powerline_theme='short'
-let g:Powerline_colorscheme='solarized256_dark'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'edkolev/tmuxline.vim'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tmuxline#enabled = 1
+
+let g:tmuxline_preset = {
+            \'a'    : '#S',
+            \'b'    : '#W',
+            \'c'    : '#H',
+            \'win'  : '#I #W',
+            \'cwin' : '#I #W',
+            \'x'    : '%a',
+            \'y'    : '#W %R',
+            \'z'    : '#H'}
 
 " Auto completion ------------- {{{
 Plugin 'Valloric/YouCompleteMe'
@@ -81,8 +95,8 @@ let g:ycm_key_invoke_completion = '<C-Space>'
 Plugin 'davidhalter/jedi-vim' " Python autocompletion
 let g:jedi#completion_enabled = 0
 
-Plugin 'shawncplus/phpcomplete.vim'
-let g:phpcomplete_parse_docblock_comments=1
+" Plugin 'shawncplus/phpcomplete.vim'
+" let g:phpcomplete_parse_docblock_comments=1
 
 Plugin 'ternjs/tern_for_vim' " For javascript
 
@@ -103,41 +117,43 @@ let g:ale_enabled = 0
 
 " Syntax and indentation
 Plugin 'Vimjas/vim-python-pep8-indent'
-" Plugin 'itspriddle/vim-jquery'
-" Plugin 'fedorenchik/qt-support.vim' " Qt syntax support
 Plugin 'mxw/vim-jsx'
-" let g:jsx_ext_required = 0
-" Plugin 'elzr/vim-json'
 Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'pangloss/vim-javascript'
+" Plugin 'elzr/vim-json'
+" let g:jsx_ext_required = 0
+" Plugin 'itspriddle/vim-jquery'
+" Plugin 'fedorenchik/qt-support.vim' " Qt syntax support
+" Plugin 'captbaritone/better-indent-support-for-php-with-html'
+" Plugin '2072/PHP-Indenting-for-VIm'
 " Plugin 'StanAngeloff/php.vim'
-Plugin 'captbaritone/better-indent-support-for-php-with-html'
-Plugin '2072/PHP-Indenting-for-VIm'
-Plugin 'hail2u/vim-css3-syntax'
+" Plugin 'hail2u/vim-css3-syntax'
 " Plugin 'groenewege/vim-less' " For LESS(dynamic CSS) syntax
 " Plugin 'bfrg/vim-cpp-modern'
 "Plugin 'octol/vim-cpp-enhanced-highlight'
-
-"Plugin 'sheerun/vim-polyglot' " Many syntax useful, can cause problem on php filetype
+Plugin 'sheerun/vim-polyglot' " Many syntax useful, can cause problem on php filetype
 
 " Code/Project navigation
 Plugin 'tmhedberg/SimpylFold'
 let g:SimplylFold_docstring_preview = 1
-Plugin 'majutsushi/tagbar'      " Class/module browser
+Plugin 'ctrlpvim/ctrlp.vim'
+" Plugin 'majutsushi/tagbar'      " Class/module browser
 " Plugin 'vim-php/tagbar-phpctags.vim'
 " let g:tagbar_phpctags_bin='~/.vim/bundle/tagbar-phpctags.vim'
 " Plugin 'ludovicchabant/vim-gutentags'
 " let g:gutentags_ctags_exclude = ['*.css', '*.html', '*.js']
 " let g:gutentags_cache_dir = '~/.vim/gutentags'
-Plugin 'ctrlpvim/ctrlp.vim'
 
 Plugin 'scrooloose/nerdtree'    " Project and file navigation
-let NERDTreeIgnore=['\.__pycache__$','\.pyc$']
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+let NERDTreeIgnore=['\.__pycache__$','\.pyc$']
 let g:NERDTreeWinSize = 25      " Set WinSize of nerdtree to 20.
 let g:NERDTreeQuitOnOpen = 0
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeDirArrows = 1
+
+" To fix alt key mapping
+" Plugin gvim-utils/vim-alt-mappings'
 
 " Plugin 'Valloric/MatchTagAlways'
 let g:mta_filetypes = {'html' : 1, 'xhtml' : 1, 'xml' : 1, 'jinja' : 1,'php' : 1}
@@ -179,9 +195,9 @@ nnoremap <silent> <F10> :cclose<cr>
 " nnoremap <silent> <F12> :!phpctags *.php<cr><cr>
 
 syntax enable
-colorscheme gruvbox "zenburn 
+colorscheme gruvbox
 set background=dark
-hi Normal guibg=NONE ctermbg=NONE
+" hi Normal guibg=NONE ctermbg=NONE
 set number
 set relativenumber
 set showcmd
@@ -211,8 +227,8 @@ set clipboard=unnamed " Enable system clipboard by default
 " Undo file
 set undofile " save undo for close
 set undodir=$HOME/.vim/undo
-set undolevels=1000 " How many undos
 set undoreload=10000 " number of lines to save for undo
+set undolevels=1000 " How many undos
 
 set foldlevel=99
 set tabstop=4
@@ -231,6 +247,22 @@ let g:html_indent_style1 = "inc"
 
 " Basic Mapping ------------------------- {{{
 "
+" Easy moving line mapping
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
+" Like above, need this to fix bug in urxvt
+nnoremap <Esc>j :m .+1<CR>==
+nnoremap <Esc>k :m .-2<CR>==
+inoremap <Esc>j <Esc>:m .+1<CR>==gi
+inoremap <Esc>k <Esc>:m .-2<CR>==gi
+vnoremap <Esc>j :m '>+1<CR>gv=gv
+vnoremap <Esc>k :m '<-2<CR>gv=gv
+
 "" Tabularise shortcuts
 nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
