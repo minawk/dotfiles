@@ -74,10 +74,10 @@ bindsym $mod+Shift+x exec firefox
 # bindsym $mod+F10 exec toggle-redshift
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec --no-startup-id dmenu_run -fn Roboto -l 3 -b -i -p "Menu: "
 
 # Start rofi
-# bindsym $mod+d exec rofi -show drun
+bindsym $mod+Shift+d exec rofi -show drun
 
 # change focus vim mode
 bindsym $mod+h focus left
@@ -243,8 +243,8 @@ bindsym XF86AudioPrev exec playerctl previous
 for_window [class="^.*"] border pixel 1
 gaps inner 5
 gaps outer 5
-bindsym $mod+Shift+t	gaps inner current set 2; gaps outer current set 2
-bindsym $mod+Shift+d	gaps inner current set 0; gaps outer current set 0
+bindsym $mod+g	gaps inner current set 2; gaps outer current set 2
+bindsym $mod+Shift+g	gaps inner current set 0; gaps outer current set 0
 bindsym $mod+minus	gaps inner current plus 2
 bindsym $mod+equal gaps inner current minus 2
 bindsym $mod+Shift+v exec vim-anywhere vim urxvt

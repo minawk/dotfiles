@@ -14,12 +14,10 @@ set path+=**
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
-"Plugin 'ervandew/eclim'
 
 " Colorsheme
 Plugin 'morhetz/gruvbox'
 Plugin 'altercation/vim-colors-solarized'
-" Plugin 'crusoexia/vim-dracula'
 Plugin 'dracula/vim'
 
 " Live editing
@@ -31,6 +29,7 @@ Plugin 'ryanoasis/vim-devicons'
 " My plugin
 Plugin 'dkprice/vim-easygrep'
 Plugin 'KabbAmine/lazyList.vim'
+Plugin 'easymotion/vim-easymotion'
 
 " Pipe to make vim database client
 Plugin 'vim-scripts/dbext.vim'
@@ -73,7 +72,7 @@ let g:tmuxline_preset = {
 
 " Auto completion ------------- {{{
 Plugin 'Valloric/YouCompleteMe'
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/.ycm_extra_conf.py'
+" let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/.ycm_extra_conf.py'
 let g:ycm_complete_in_strings = 1 "default 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1 "get data from string and comments
 let g:ycm_seed_identifiers_with_syntax = 1 "get data from syntax of language
@@ -83,7 +82,7 @@ let g:ycm_enable_diagnostic_signs = 1
 let g:ycm_enable_diagnostic_highlighting = 0
 let g:ycm_always_populate_location_list = 1 "default 0
 let g:ycm_open_loclist_on_ycm_diags = 1 "default 1
-let g:ycm_collect_identifiers_from_tags_files = 0 "default 0
+let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
 let g:ycm_path_to_python_interpreter = '/usr/bin/python'
 let g:ycm_server_use_vim_stdout = 0 "default 0 (logging to console)
 let g:ycm_server_log_level = 'info' "default info
@@ -91,9 +90,14 @@ let g:ycm_confirm_extra_conf = 0
 let g:ycm_goto_buffer_command = 'same-buffer' "[ 'same-buffer', 'horizontal-split', 'vertical-split', 'new-tab' ]
 let g:ycm_filetype_whitelist = { '*': 1 }
 let g:ycm_key_invoke_completion = '<C-Space>'
+let g:ycm_key_list_stop_completion = ['<C-h>']
+let g:ycm_use_ultisnips_completer = 1 " Default 1, just ensure
+let g:ycm_complete_in_comments = 1 " Completion in comments
 
 Plugin 'davidhalter/jedi-vim' " Python autocompletion
 let g:jedi#completion_enabled = 0
+" Plugin 'tweekmonster/braceless.vim'
+" autocmd FileType python BracelessEnable +indent
 
 " Plugin 'shawncplus/phpcomplete.vim'
 " let g:phpcomplete_parse_docblock_comments=1
@@ -131,12 +135,25 @@ Plugin 'pangloss/vim-javascript'
 " Plugin 'groenewege/vim-less' " For LESS(dynamic CSS) syntax
 " Plugin 'bfrg/vim-cpp-modern'
 "Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'sheerun/vim-polyglot' " Many syntax useful, can cause problem on php filetype
+" Plugin 'sheerun/vim-polyglot' " Many syntax useful, can cause problem on php filetype
 
 " Code/Project navigation
 Plugin 'tmhedberg/SimpylFold'
 let g:SimplylFold_docstring_preview = 1
 Plugin 'ctrlpvim/ctrlp.vim'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*
+let g:ctrlp_custom_ignore = 'tmp$\|\.git$\|\.hg$\|\.svn$\|.rvm$|.bundle$\|vendor'
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_match_window_bottom=1
+let g:ctrlp_max_height=25
+let g:ctrlp_match_window_reversed=0
+let g:ctrlp_mruf_max=500
+let g:ctrlp_follow_symlinks=1
+let g:ctrlp_clear_cache_on_exit=0
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
 " Plugin 'majutsushi/tagbar'      " Class/module browser
 " Plugin 'vim-php/tagbar-phpctags.vim'
 " let g:tagbar_phpctags_bin='~/.vim/bundle/tagbar-phpctags.vim'
@@ -146,7 +163,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 
 Plugin 'scrooloose/nerdtree'    " Project and file navigation
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-let NERDTreeIgnore=['\.__pycache__$','\.pyc$']
+let NERDTreeIgnore=['\.__pycache__$','\.pyc$', 'node_module', 'ios']
 let g:NERDTreeWinSize = 25      " Set WinSize of nerdtree to 20.
 let g:NERDTreeQuitOnOpen = 0
 let g:NERDTreeMinimalUI = 1
@@ -154,8 +171,33 @@ let g:NERDTreeDirArrows = 1
 
 " To fix alt key mapping
 " Plugin gvim-utils/vim-alt-mappings'
-
+"Plugin 'ervandew/eclim'
 " Plugin 'Valloric/MatchTagAlways'
+
+
+" Snippets
+" Track the engine.
+Plugin 'SirVer/ultisnips'
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-e>"
+let g:UltiSnipsJumpForwardTrigger="<c-e>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" Currently, es6 version of snippets is available in es6 branch only
+Plugin 'letientai299/vim-react-snippets', { 'branch': 'es6' }
+
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+
 let g:mta_filetypes = {'html' : 1, 'xhtml' : 1, 'xml' : 1, 'jinja' : 1,'php' : 1}
 highlight MatchTag ctermfg=black ctermbg=lightgreen guifg=black guibg=lightgreen
 call vundle#end()            " required
@@ -165,6 +207,17 @@ endif
 " }}}
 
 " Viminfo ---------------------- {{{
+"" Use a blinking upright bar cursor in Insert mode, a blinking block in normal
+if &term == 'xterm-256color' || &term == 'screen-256color'
+    let &t_SI = "\<Esc>[5 q"
+    let &t_EI = "\<Esc>[1 q"
+endif
+
+if exists('$TMUX')
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+endif
+
 set viminfo='10,\"100,:20,%,n~/.viminfo
 
 " For restoring last line for last editing
@@ -195,9 +248,9 @@ nnoremap <silent> <F10> :cclose<cr>
 " nnoremap <silent> <F12> :!phpctags *.php<cr><cr>
 
 syntax enable
-colorscheme gruvbox
+hi Normal guibg=NONE ctermbg=NONE
 set background=dark
-" hi Normal guibg=NONE ctermbg=NONE
+colorscheme gruvbox
 set number
 set relativenumber
 set showcmd

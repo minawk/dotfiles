@@ -92,7 +92,7 @@ color19 = #504945
 color20 = #bdae93
 color21 = #ebdbb2
 
-highlight = #2f2f2f
+# highlight = #2f2f2f
 
 [hints]
 font = Monospace 12

@@ -1,5 +1,6 @@
 [user]
 	email = minarandria@gmail.com
-	name = minawk
+	name = Benjamina Randrianasolo
 [alias]
 	st = status
+	pushall = !git remote | xargs -L1 git push --all
