@@ -22,6 +22,7 @@ Plugin 'dracula/vim'
 
 " Live editing
 Plugin 'jaxbot/browserlink.vim'
+let g:bl_pagefiletypes=['html', 'javascript', 'php', 'htmldjango']
 
 " Icon
 Plugin 'ryanoasis/vim-devicons'
@@ -47,8 +48,8 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-repeat' " Can repeat plugins actions
 Plugin 'tpope/vim-commentary' " Comment easily. For html emmet can do the job
-Plugin 'godlygeek/tabular'
-Plugin 'benmills/vimux'
+" Plugin 'godlygeek/tabular'
+" Plugin 'benmills/vimux'
 Plugin 'mbbill/undotree'
 packadd! matchit " It ships with Vim. We just enable it.
 
@@ -96,8 +97,13 @@ let g:ycm_complete_in_comments = 1 " Completion in comments
 
 Plugin 'davidhalter/jedi-vim' " Python autocompletion
 let g:jedi#completion_enabled = 0
+" Plugin 'jmcomets/vim-pony' " Support django project navigation
+Plugin 'tweekmonster/django-plus.vim'
+Plugin 'tpope/vim-dispatch'
+" Plugin 'fisadev/vim-isort'
 " Plugin 'tweekmonster/braceless.vim'
 " autocmd FileType python BracelessEnable +indent
+" Plugin 'python-mode/python-mode', { 'branch': 'develop' }
 
 " Plugin 'shawncplus/phpcomplete.vim'
 " let g:phpcomplete_parse_docblock_comments=1
@@ -120,14 +126,18 @@ let g:ale_fixers = {'javascript': ['eslint']}
 let g:ale_enabled = 0
 
 " Syntax and indentation
+Plugin 'peterhoeg/vim-qml'
+Plugin 'digitaltoad/vim-pug'
+Plugin 'mustache/vim-mustache-handlebars' 
 Plugin 'Vimjas/vim-python-pep8-indent'
 Plugin 'mxw/vim-jsx'
 Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
 " Plugin 'elzr/vim-json'
 " let g:jsx_ext_required = 0
 " Plugin 'itspriddle/vim-jquery'
-" Plugin 'fedorenchik/qt-support.vim' " Qt syntax support
+Plugin 'fedorenchik/qt-support.vim' " Qt syntax support
 " Plugin 'captbaritone/better-indent-support-for-php-with-html'
 " Plugin '2072/PHP-Indenting-for-VIm'
 " Plugin 'StanAngeloff/php.vim'
@@ -141,19 +151,20 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'tmhedberg/SimpylFold'
 let g:SimplylFold_docstring_preview = 1
 Plugin 'ctrlpvim/ctrlp.vim'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*
-let g:ctrlp_custom_ignore = 'tmp$\|\.git$\|\.hg$\|\.svn$\|.rvm$|.bundle$\|vendor'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*,*/\__pycache__/*
+let g:ctrlp_custom_ignore = 'tmp$\|\.git$\|\.hg$\|\.svn$\|.rvm$|.bundle$\|vendor\|.__pycache_\|.node_modules$'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_match_window_bottom=1
 let g:ctrlp_max_height=25
 let g:ctrlp_match_window_reversed=0
 let g:ctrlp_mruf_max=500
 let g:ctrlp_follow_symlinks=1
-let g:ctrlp_clear_cache_on_exit=0
+let g:ctrlp_clear_cache_on_exit=1
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
+
 " Plugin 'majutsushi/tagbar'      " Class/module browser
 " Plugin 'vim-php/tagbar-phpctags.vim'
 " let g:tagbar_phpctags_bin='~/.vim/bundle/tagbar-phpctags.vim'
@@ -163,7 +174,7 @@ endif
 
 Plugin 'scrooloose/nerdtree'    " Project and file navigation
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-let NERDTreeIgnore=['\.__pycache__$','\.pyc$', 'node_module', 'ios']
+let NERDTreeIgnore=['__pycache__','\.pyc$', 'node_module', 'ios']
 let g:NERDTreeWinSize = 25      " Set WinSize of nerdtree to 20.
 let g:NERDTreeQuitOnOpen = 0
 let g:NERDTreeMinimalUI = 1
@@ -180,8 +191,8 @@ let g:NERDTreeDirArrows = 1
 Plugin 'SirVer/ultisnips'
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-e>"
-let g:UltiSnipsJumpForwardTrigger="<c-e>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsJumpForwardTrigger="<c-m>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
 " Currently, es6 version of snippets is available in es6 branch only
 Plugin 'letientai299/vim-react-snippets', { 'branch': 'es6' }
@@ -274,7 +285,7 @@ set smartindent
 set expandtab
 
 set updatetime=100 " Useful for gitgutter
-set cursorline " No highlight on current line
+set cursorline " highlight on current line
 set clipboard=unnamed " Enable system clipboard by default
 
 " Undo file
@@ -341,6 +352,7 @@ vnoremap << <gv
 nnoremap <silent> <leader>ph :!help.py <cword><cr>
 " Youcompleteme mapping
 nnoremap <leader>gt :YcmCompleter GoTo<cr>
+nnoremap <leader>gT :YcmCompleter GetType<cr>
 
 " Mapping esc in insert mode
 inoremap jk <esc>
@@ -443,7 +455,7 @@ tnoremap <c-[> <C-W>N
 nnoremap gF :tabnew <cfile><cr>
 
 " Moving in insert mode only for right move.
-inoremap <c-l> <end>
+" inoremap <c-l> <end>
 inoremap <c-j> <cr><esc>ko
 " }}}
 
@@ -461,8 +473,8 @@ augroup END
 
 augroup global_filetype
     autocmd!
-    autocmd FileType js,javascript,php,html,css,sql,mysql setlocal tabstop=2 softtabstop=2 shiftwidth=2 backspace=2
-    autocmd Filetype html,javascript setlocal nowrap 
+    autocmd FileType js,javascript,php,html,htmldjango,pug,css,sql,mysql setlocal tabstop=2 softtabstop=2 shiftwidth=2 backspace=2
+    autocmd Filetype html,htmldjango,pug,javascript setlocal nowrap 
     autocmd FileType python setlocal foldmethod=indent textwidth=100
     autocmd FileType vim setlocal foldmethod=marker
     autocmd FileType vb setlocal commentstring='\ %s

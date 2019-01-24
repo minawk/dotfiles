@@ -19,7 +19,7 @@ set $elegant #002636
 # Set some nice colors      border	   background text	      indicator
 client.focused              $darkgrey1 $darkgrey2 $darkgrey1  $orange $lightgrey1
 client.unfocused            $darkgrey1 $darkgrey1 $lightgrey1 $cyan0
-client.focused_inactive     $orange     $acqua     $silver     $acqua
+client.focused_inactive     $darkgrey1 $darkgrey2 $darkgrey1  $orange $lightgrey1
 client.placeholder          $magenta   $magenta   $silver     $magenta
 client.urgent               $magenta   $magenta   $silver     $magenta
 client.background #ffffff

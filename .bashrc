@@ -1,7 +1,7 @@
 #
 # ~/.bashrc
 #
-# set -o vi
+set -o vi
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -15,6 +15,10 @@ alias cdS='cd /srv/http'
 alias cdP='cd ~/MEGAsync/Project'
 alias vimn='vim -N -u NONE'
 alias v='vim'
+alias w='sudo netctl'
+alias wm='sudo wifi-menu'
+alias touchpad-enable='synclient TapButton1=1'
+alias touchpad-disable='synclient TapButton1=0'
 alias e='exit'
 alias tmuxa='tmux attach || tmux new'
 alias tmuxs='tmux new -s'
@@ -24,6 +28,7 @@ alias sdn='shutdown now'
 alias tsource='tmux source-file .tmux.conf'
 alias diska='ncdu'
 alias wine-32='WINEPREFIX=~/wine32'
+alias minawk-wifi="sudo systemctl start wlp3s0-minawk"
 
 PS1='[\u@\h \W]\$ '
 PS1="[\[\e[0;35m\]\u\[\e[0m\]@\[\e[0;36m\]\h\[\e[0m\] \W]\$ "
@@ -54,7 +59,8 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
-
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
+# export JAVA_FONTS="/usr/share/fonts/TTF"
 
 # To open tmux by default on any terminal emulator
 # [ -z "$TMUX"  ] && { exec tmux;}
