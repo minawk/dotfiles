@@ -126,14 +126,16 @@ let g:ale_fixers = {'javascript': ['eslint']}
 let g:ale_enabled = 0
 
 " Syntax and indentation
-Plugin 'peterhoeg/vim-qml'
-Plugin 'digitaltoad/vim-pug'
-Plugin 'mustache/vim-mustache-handlebars' 
+" Plugin 'peterhoeg/vim-qml'
+" Plugin 'digitaltoad/vim-pug'
+" Plugin 'mustache/vim-mustache-handlebars' 
 Plugin 'Vimjas/vim-python-pep8-indent'
-Plugin 'mxw/vim-jsx'
+" Plugin 'mxw/vim-jsx'
+Plugin 'posva/vim-vue'
 Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'othree/html5.vim'
-Plugin 'pangloss/vim-javascript'
+Plugin 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html', 'vue'] }
+Plugin 'HerringtonDarkholme/yats.vim'
 " Plugin 'elzr/vim-json'
 " let g:jsx_ext_required = 0
 " Plugin 'itspriddle/vim-jquery'
@@ -473,11 +475,14 @@ augroup END
 
 augroup global_filetype
     autocmd!
-    autocmd FileType js,javascript,php,html,htmldjango,pug,css,sql,mysql setlocal tabstop=2 softtabstop=2 shiftwidth=2 backspace=2
+    autocmd FileType js,javascript,php,html,htmldjango,pug,vue,css,sql,mysql setlocal tabstop=2 softtabstop=2 shiftwidth=2 backspace=2
     autocmd Filetype html,htmldjango,pug,javascript setlocal nowrap 
     autocmd FileType python setlocal foldmethod=indent textwidth=100
     autocmd FileType vim setlocal foldmethod=marker
     autocmd FileType vb setlocal commentstring='\ %s
+    let g:vue_disable_pre_processors=1
+    autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
+    autocmd FileType vue syntax sync fromstart
 augroup END
 
 augroup filetype_markdown

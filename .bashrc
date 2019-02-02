@@ -52,7 +52,7 @@ fi
 # export PATH="/home/minawk/.script:$PATH"
 export VISUAL=/usr/bin/vim
 export EDITOR='vim'
-export PATH="$PATH:$HOME/.scripts:$HOME/.config/composer/vendor/bin"
+export PATH="$PATH:$HOME/.scripts:$HOME/.config/composer/vendor/bin:$HOME/.yarn-global/node_modules/.bin"
 export QT_QPA_PLATFORMTHEME='qt5ct'
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
