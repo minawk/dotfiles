@@ -70,17 +70,18 @@ let g:tmuxline_preset = {
             \'x'    : '%a',
             \'y'    : '#W %R',
             \'z'    : '#H'}
-
 " Auto completion ------------- {{{
+" Plugin 'mikelue/vim-maven-plugin'
 Plugin 'Valloric/YouCompleteMe'
 " let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/.ycm_extra_conf.py'
+let g:EclimFileTypeValidate = 0
 let g:ycm_complete_in_strings = 1 "default 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1 "get data from string and comments
 let g:ycm_seed_identifiers_with_syntax = 1 "get data from syntax of language
 let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_enable_diagnostic_signs = 1
-let g:ycm_enable_diagnostic_highlighting = 0
+let g:ycm_enable_diagnostic_signs = 0
+let g:ycm_enable_diagnostic_highlighting = 1
 let g:ycm_always_populate_location_list = 1 "default 0
 let g:ycm_open_loclist_on_ycm_diags = 1 "default 1
 let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
@@ -94,11 +95,16 @@ let g:ycm_key_invoke_completion = '<C-Space>'
 let g:ycm_key_list_stop_completion = ['<C-h>']
 let g:ycm_use_ultisnips_completer = 1 " Default 1, just ensure
 let g:ycm_complete_in_comments = 1 " Completion in comments
+" Typesciprt setting
+if !exists("g:ycm_semantic_triggers")
+  let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers['typescript'] = ['.']
 
 Plugin 'davidhalter/jedi-vim' " Python autocompletion
 let g:jedi#completion_enabled = 0
 " Plugin 'jmcomets/vim-pony' " Support django project navigation
-Plugin 'tweekmonster/django-plus.vim'
+" Plugin 'tweekmonster/django-plus.vim'
 Plugin 'tpope/vim-dispatch'
 " Plugin 'fisadev/vim-isort'
 " Plugin 'tweekmonster/braceless.vim'
@@ -108,7 +114,7 @@ Plugin 'tpope/vim-dispatch'
 " Plugin 'shawncplus/phpcomplete.vim'
 " let g:phpcomplete_parse_docblock_comments=1
 
-Plugin 'ternjs/tern_for_vim' " For javascript
+" Plugin 'ternjs/tern_for_vim' " For javascript
 
 " }}}
 
@@ -124,27 +130,39 @@ let g:ale_set_balloons = 1
 let g:ale_sign_column_always = 0
 let g:ale_fixers = {'javascript': ['eslint']}
 let g:ale_enabled = 0
+" let g:ale_completion_enabled = 1
 
 " Syntax and indentation
+Plugin 'Vimjas/vim-python-pep8-indent'
 " Plugin 'peterhoeg/vim-qml'
+
 " Plugin 'digitaltoad/vim-pug'
 " Plugin 'mustache/vim-mustache-handlebars' 
-Plugin 'Vimjas/vim-python-pep8-indent'
-" Plugin 'mxw/vim-jsx'
-Plugin 'posva/vim-vue'
-Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'othree/html5.vim'
+
+Plugin 'jason0x43/vim-js-indent'
+Plugin 'posva/vim-vue'
+" Plugin 'othree/javascript-libraries-syntax.vim'
+" Plugin 'othree/yajs.vim'
 Plugin 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html', 'vue'] }
-Plugin 'HerringtonDarkholme/yats.vim'
+Plugin 'mxw/vim-jsx'
+
+Plugin 'HerringtonDarkholme/yats.vim' " Typesciprt
+" Plugin 'leafgarland/typescript-vim'
+let g:jsx_ext_required = 0
+
+" Plugin 'dart-lang/dart-vim-plugin'
+" Plugin 'thosakwe/vim-flutter'
+
 " Plugin 'elzr/vim-json'
-" let g:jsx_ext_required = 0
+
 " Plugin 'itspriddle/vim-jquery'
-Plugin 'fedorenchik/qt-support.vim' " Qt syntax support
+" Plugin 'fedorenchik/qt-support.vim' " Qt syntax support
 " Plugin 'captbaritone/better-indent-support-for-php-with-html'
 " Plugin '2072/PHP-Indenting-for-VIm'
 " Plugin 'StanAngeloff/php.vim'
 " Plugin 'hail2u/vim-css3-syntax'
-" Plugin 'groenewege/vim-less' " For LESS(dynamic CSS) syntax
+Plugin 'groenewege/vim-less' " For LESS(dynamic CSS) syntax
 " Plugin 'bfrg/vim-cpp-modern'
 "Plugin 'octol/vim-cpp-enhanced-highlight'
 " Plugin 'sheerun/vim-polyglot' " Many syntax useful, can cause problem on php filetype
@@ -154,7 +172,7 @@ Plugin 'tmhedberg/SimpylFold'
 let g:SimplylFold_docstring_preview = 1
 Plugin 'ctrlpvim/ctrlp.vim'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/vendor/*,*/\.git/*,*/\__pycache__/*
-let g:ctrlp_custom_ignore = 'tmp$\|\.git$\|\.hg$\|\.svn$\|.rvm$|.bundle$\|vendor\|.__pycache_\|.node_modules$'
+let g:ctrlp_custom_ignore = 'bin$\|\.gradle$\|gradle$\|\.settings$\|bin$\|build\|tmp$\|\.git$\|\.hg$\|\.svn$\|.rvm$|.bundle$\|vendor$\|.__pycache_\|.node_modules$\|dist$\|target$'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_match_window_bottom=1
 let g:ctrlp_max_height=25
@@ -195,14 +213,11 @@ Plugin 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger="<c-e>"
 let g:UltiSnipsJumpForwardTrigger="<c-m>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
-
 " Currently, es6 version of snippets is available in es6 branch only
 Plugin 'letientai299/vim-react-snippets', { 'branch': 'es6' }
-
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
-
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
 
@@ -314,20 +329,14 @@ let g:html_indent_style1 = "inc"
 " Basic Mapping ------------------------- {{{
 "
 " Easy moving line mapping
+nnoremap <Leader>ss :sync syntax fromstart<CR>
+
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
 inoremap <A-j> <Esc>:m .+1<CR>==gi
 inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
-
-" Like above, need this to fix bug in urxvt
-nnoremap <Esc>j :m .+1<CR>==
-nnoremap <Esc>k :m .-2<CR>==
-inoremap <Esc>j <Esc>:m .+1<CR>==gi
-inoremap <Esc>k <Esc>:m .-2<CR>==gi
-vnoremap <Esc>j :m '>+1<CR>gv=gv
-vnoremap <Esc>k :m '<-2<CR>gv=gv
 
 "" Tabularise shortcuts
 nmap <Leader>a= :Tabularize /=<CR>
@@ -355,6 +364,7 @@ nnoremap <silent> <leader>ph :!help.py <cword><cr>
 " Youcompleteme mapping
 nnoremap <leader>gt :YcmCompleter GoTo<cr>
 nnoremap <leader>gT :YcmCompleter GetType<cr>
+nnoremap <leader>yf :YcmCompleter FixIt<cr>
 
 " Mapping esc in insert mode
 inoremap jk <esc>
@@ -459,6 +469,12 @@ nnoremap gF :tabnew <cfile><cr>
 " Moving in insert mode only for right move.
 " inoremap <c-l> <end>
 inoremap <c-j> <cr><esc>ko
+
+" Make
+nnoremap <leader>m :make<cr>
+
+" Autoread or edit
+nnoremap <leader>r :bufdo :edit<cr>
 " }}}
 
 " Abbreviations ---------------------- {{{
@@ -475,14 +491,14 @@ augroup END
 
 augroup global_filetype
     autocmd!
-    autocmd FileType js,javascript,php,html,htmldjango,pug,vue,css,sql,mysql setlocal tabstop=2 softtabstop=2 shiftwidth=2 backspace=2
+    autocmd FileType js,javascript,php,jsx,html,htmldjango,pug,vue,css,sql,mysql setlocal tabstop=2 softtabstop=2 shiftwidth=2 backspace=2
     autocmd Filetype html,htmldjango,pug,javascript setlocal nowrap 
     autocmd FileType python setlocal foldmethod=indent textwidth=100
     autocmd FileType vim setlocal foldmethod=marker
     autocmd FileType vb setlocal commentstring='\ %s
     let g:vue_disable_pre_processors=1
     autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
-    autocmd FileType vue syntax sync fromstart
+    autocmd BufRead,BufNewFile *.vue syntax sync fromstart
 augroup END
 
 augroup filetype_markdown

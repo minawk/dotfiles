@@ -283,6 +283,8 @@ for_window [class="Wrapper-2.0"] floating enable
 for_window [class="Firefox"] gaps inner $ws2 set 0; gaps outer $ws2 set 0
 for_window [class="URxvt" instance="floating"] floating enable
 for_window [class="*" instance="floating"] floating enable
+for_window [class="sun-awt-X11-XFramePeer"] floating enable
+for_window [class="com-minawk-test_javax-App"] floating enable
 assign [class="Firefox"] $ws2
 assign [class="Chromium"] $ws2
 assign [class="Thunderbird"] $ws3

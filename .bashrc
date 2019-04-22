@@ -59,7 +59,8 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
+export PATH=$PATH:`yarn --offline global bin`
+#export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 # export JAVA_FONTS="/usr/share/fonts/TTF"
 
 # To open tmux by default on any terminal emulator
