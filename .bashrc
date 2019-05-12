@@ -30,8 +30,9 @@ alias diska='ncdu'
 alias wine-32='WINEPREFIX=~/wine32'
 alias minawk-wifi="sudo systemctl start wlp3s0-minawk"
 
-PS1='[\u@\h \W]\$ '
+PS1='[\W]\$ '
 PS1="[\[\e[0;35m\]\u\[\e[0m\]@\[\e[0;36m\]\h\[\e[0m\] \W]\$ "
+# PS1="[\[\e[0;m\] \W]\$ "
 # bind '"jk":vi-movement-mode'
 
 man() {
@@ -52,13 +53,15 @@ fi
 # export PATH="/home/minawk/.script:$PATH"
 export VISUAL=/usr/bin/vim
 export EDITOR='vim'
-export PATH="$PATH:$HOME/.scripts:$HOME/.config/composer/vendor/bin:$HOME/.yarn-global/node_modules/.bin"
+export GOPATH=~/go
+export PATH="$PATH:$HOME/.scripts:$HOME/.config/composer/vendor/bin:$HOME/.yarn-global/node_modules/.bin:$HOME/.local/bin"
 export QT_QPA_PLATFORMTHEME='qt5ct'
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:`yarn --offline global bin`
 #export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 # export JAVA_FONTS="/usr/share/fonts/TTF"

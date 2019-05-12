@@ -4,6 +4,6 @@
 [alias]
 	st = status
 	pushall = !git remote | xargs -L1 git push --all
-	logg = log --oneline --all --graph
+	logg = log --oneline --all --decorate --graph
 [color]
 	branch = auto

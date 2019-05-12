@@ -260,7 +260,7 @@ exec --no-startup-id dunst
 exec --no-startup-id notify-send "Welcome back Minawk!" # Greeting on startup
 exec --no-startup-id nitrogen --restore; sleep 1;
 # exec_always feh --bg-scale /home/minawk/Downloads/wallpaper.jpg
-exec --no-startup-id "xfce4-power-manager"
+# exec --no-startup-id "xfce4-power-manager"
 exec --no-startup-id "devmon --no-gui"
 exec --no-startup-id "pulseaudio --start"
 exec --no-startup-id "synclient TapButton1=1"
@@ -268,7 +268,7 @@ exec --no-startup-id "synclient HorizTwoFingerScroll=1"
 exec --no-startup-id "synclient VertScrollDelta=-56"
 exec --no-startup-id "synclient HorizScrollDelta=-56"
 exec_always --no-startup-id "synclient TouchpadOff=0"
-#exec --no-startup-id nm-applet
+exec --no-startup-id wicd-client -t
 # exec_always --no-startup-id xfce4-panel --disable-wm-check
 
 for_window [class="^Pavucontrol$"] floating enable
@@ -280,6 +280,7 @@ for_window [class="Nitrogen"] floating enable
 for_window [class="Xarchiver"] floating enable
 for_window [class="file_progress"] floating enable
 for_window [class="Wrapper-2.0"] floating enable
+for_window [class="Wicd-client.py"] floating enable
 for_window [class="Firefox"] gaps inner $ws2 set 0; gaps outer $ws2 set 0
 for_window [class="URxvt" instance="floating"] floating enable
 for_window [class="*" instance="floating"] floating enable

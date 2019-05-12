@@ -38,9 +38,9 @@ echo $(netctl list | grep \* | cut -d"-" -f2) $QUALITY%  # full text
 ####################################
 # # color                          #
 # if [[ $QUALITY -ge 60 ]]; then   #
-#     echo "#4ec2f7"               #
-# elif [[ $QUALITY -lt 60 ]]; then #
 #     echo "#8CE000"               #
+# elif [[ $QUALITY -lt 60 ]]; then #
+#     echo "#4ec2f7"               #
 # elif [[ $QUALITY -lt 40 ]]; then #
 #     echo "#fd971f"               #
 # elif [[ $QUALITY -lt 20 ]]; then #
