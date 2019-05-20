@@ -268,7 +268,7 @@ exec --no-startup-id "synclient HorizTwoFingerScroll=1"
 exec --no-startup-id "synclient VertScrollDelta=-56"
 exec --no-startup-id "synclient HorizScrollDelta=-56"
 exec_always --no-startup-id "synclient TouchpadOff=0"
-exec --no-startup-id wicd-client -t
+exec --no-startup-id nm-applet
 # exec_always --no-startup-id xfce4-panel --disable-wm-check
 
 for_window [class="^Pavucontrol$"] floating enable

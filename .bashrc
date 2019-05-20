@@ -29,6 +29,7 @@ alias tsource='tmux source-file .tmux.conf'
 alias diska='ncdu'
 alias wine-32='WINEPREFIX=~/wine32'
 alias minawk-wifi="sudo systemctl start wlp3s0-minawk"
+alias vimawesome="pushd ~/.config/awesome && vim rc.lua && popd && clear"
 
 PS1='[\W]\$ '
 PS1="[\[\e[0;35m\]\u\[\e[0m\]@\[\e[0;36m\]\h\[\e[0m\] \W]\$ "

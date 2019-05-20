@@ -43,6 +43,7 @@ Plugin 'NLKNguyen/pipe-mysql.vim'
 Plugin 'mattn/emmet-vim' " For html and css
 let g:user_emmet_settings={'javascript.jsx': {'extends':'jsx'}}
 Plugin 'jiangmiao/auto-pairs'
+Plugin 'wesQ3/vim-windowswap'
 Plugin 'nelstrom/vim-visual-star-search'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-abolish'
@@ -72,40 +73,41 @@ let g:tmuxline_preset = {
             \'z'    : '#H'}
 " Auto completion ------------- {{{
 " Plugin 'mikelue/vim-maven-plugin'
-" Plugin 'Valloric/YouCompleteMe'
-" " let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/.ycm_extra_conf.py'
-" let g:EclimFileTypeValidate = 0
-" let g:ycm_complete_in_strings = 1 "default 1
-" let g:ycm_collect_identifiers_from_comments_and_strings = 1 "get data from string and comments
-" let g:ycm_seed_identifiers_with_syntax = 1 "get data from syntax of language
-" let g:ycm_add_preview_to_completeopt = 1
-" let g:ycm_autoclose_preview_window_after_completion = 1
-" let g:ycm_enable_diagnostic_signs = 0
-" let g:ycm_enable_diagnostic_highlighting = 1
-" let g:ycm_always_populate_location_list = 1 "default 0
-" let g:ycm_open_loclist_on_ycm_diags = 1 "default 1
-" let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
-" let g:ycm_path_to_python_interpreter = '/usr/bin/python'
-" let g:ycm_server_use_vim_stdout = 0 "default 0 (logging to console)
-" let g:ycm_server_log_level = 'info' "default info
-" let g:ycm_confirm_extra_conf = 0
-" let g:ycm_goto_buffer_command = 'same-buffer' "[ 'same-buffer', 'horizontal-split', 'vertical-split', 'new-tab' ]
-" let g:ycm_filetype_whitelist = { '*': 1 }
-" let g:ycm_key_invoke_completion = '<C-Space>'
-" let g:ycm_key_list_stop_completion = ['<C-h>']
-" let g:ycm_use_ultisnips_completer = 1 " Default 1, just ensure
-" let g:ycm_complete_in_comments = 1 " Completion in comments
-" " Typesciprt setting
-" if !exists("g:ycm_semantic_triggers")
-"   let g:ycm_semantic_triggers = {}
-" endif
-" let g:ycm_semantic_triggers['typescript'] = ['.']
+Plugin 'Valloric/YouCompleteMe'
+" let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/.ycm_extra_conf.py'
+let g:EclimFileTypeValidate = 0
+let g:ycm_complete_in_strings = 1 "default 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 1 "get data from string and comments
+let g:ycm_seed_identifiers_with_syntax = 1 "get data from syntax of language
+let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_enable_diagnostic_signs = 0
+let g:ycm_enable_diagnostic_highlighting = 1
+let g:ycm_always_populate_location_list = 1 "default 0
+let g:ycm_open_loclist_on_ycm_diags = 1 "default 1
+let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
+let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+let g:ycm_server_use_vim_stdout = 0 "default 0 (logging to console)
+let g:ycm_server_log_level = 'info' "default info
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_goto_buffer_command = 'same-buffer' "[ 'same-buffer', 'horizontal-split', 'vertical-split', 'new-tab' ]
+let g:ycm_filetype_whitelist = { '*': 1 }
+let g:ycm_key_invoke_completion = '<C-Space>'
+let g:ycm_key_list_stop_completion = ['<C-h>']
+let g:ycm_use_ultisnips_completer = 1 " Default 1, just ensure
+let g:ycm_complete_in_comments = 1 " Completion in comments
+" Typesciprt setting
+if !exists("g:ycm_semantic_triggers")
+  let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers['typescript'] = ['.']
 
-" Plugin 'davidhalter/jedi-vim' " Python autocompletion
-" let g:jedi#completion_enabled = 0
+Plugin 'davidhalter/jedi-vim' " Python autocompletion
+let g:jedi#completion_enabled = 0
 " Plugin 'jmcomets/vim-pony' " Support django project navigation
 " Plugin 'tweekmonster/django-plus.vim'
 Plugin 'tpope/vim-dispatch'
+Plugin 'fatih/vim-go'
 " Plugin 'fisadev/vim-isort'
 " Plugin 'tweekmonster/braceless.vim'
 " autocmd FileType python BracelessEnable +indent
@@ -123,17 +125,19 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter' " Diff
 
 " Syntax checker
-" Plugin 'nvie/vim-flake8'
-" let python_highlight_all = 1
-" Plugin 'w0rp/ale'
-" let g:ale_set_balloons = 1
-" let g:ale_sign_column_always = 0
-" let g:ale_fixers = {'javascript': ['eslint']}
-" let g:ale_enabled = 0
-" let g:ale_completion_enabled = 1
+Plugin 'nvie/vim-flake8'
+let python_highlight_all = 1
+Plugin 'w0rp/ale'
+let g:ale_set_balloons = 1
+let g:ale_sign_column_always = 1
+let g:ale_fixers = {'javascript': ['prettier', 'eslint']}
+let g:ale_fix_on_save = 1
+let g:ale_enabled = 0
+let g:ale_completion_enabled = 1
+set omnifunc=ale#completion#OmniFunc
 
 " Syntax and indentation
-" Plugin 'Vimjas/vim-python-pep8-indent'
+Plugin 'Vimjas/vim-python-pep8-indent'
 " Plugin 'peterhoeg/vim-qml'
 
 " Plugin 'digitaltoad/vim-pug'
@@ -141,11 +145,18 @@ Plugin 'airblade/vim-gitgutter' " Diff
 Plugin 'othree/html5.vim'
 
 " Plugin 'jason0x43/vim-js-indent'
-" Plugin 'posva/vim-vue'
+Plugin 'posva/vim-vue'
 " Plugin 'othree/javascript-libraries-syntax.vim'
 " Plugin 'othree/yajs.vim'
-Plugin 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html', 'vue'] }
-Plugin 'mxw/vim-jsx'
+Plugin 'pangloss/vim-javascript'
+Plugin 'maxmellon/vim-jsx-pretty'
+Plugin 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'branch': 'release/1.x',
+  \ 'for': [ 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown',
+    \ 'vue', 'lua', 'php', 'python', 'ruby', 'html', 'swift' ] }
+Plugin 'Galooshi/vim-import-js'
+" Plugin 'mxw/vim-jsx'
 
 Plugin 'HerringtonDarkholme/yats.vim' " Typesciprt
 " Plugin 'leafgarland/typescript-vim'
@@ -178,8 +189,8 @@ let g:ctrlp_match_window_bottom=1
 let g:ctrlp_max_height=25
 let g:ctrlp_match_window_reversed=0
 let g:ctrlp_mruf_max=500
-let g:ctrlp_follow_symlinks=1
-let g:ctrlp_clear_cache_on_exit=1
+" let g:ctrlp_follow_symlinks=1
+" let g:ctrlp_clear_cache_on_exit=1
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
@@ -208,18 +219,22 @@ let g:NERDTreeDirArrows = 1
 
 " Snippets
 " Track the engine.
-" Plugin 'SirVer/ultisnips'
-" " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-" let g:UltiSnipsExpandTrigger="<c-e>"
-" let g:UltiSnipsJumpForwardTrigger="<c-m>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-b>"
-" " Currently, es6 version of snippets is available in es6 branch only
-" Plugin 'letientai299/vim-react-snippets', { 'branch': 'es6' }
-" Plugin 'MarcWeber/vim-addon-mw-utils'
-" Plugin 'tomtom/tlib_vim'
-" Plugin 'garbas/vim-snipmate'
-" " Snippets are separated from the engine. Add this if you want them:
-" Plugin 'honza/vim-snippets'
+Plugin 'SirVer/ultisnips'
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-e>"
+let g:UltiSnipsJumpForwardTrigger="<c-m>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+" Currently, es6 version of snippets is available in es6 branch only
+" ES2015 code snippets (Optional)
+Plugin 'epilande/vim-es2015-snippets'
+" " React code snippets
+Plugin 'epilande/vim-react-snippets'
+" Trigger configuration (Optional)
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
 
 
 " If you want :UltiSnipsEdit to split your window.
@@ -312,9 +327,9 @@ set undoreload=10000 " number of lines to save for undo
 set undolevels=1000 " How many undos
 
 set foldlevel=99
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set backspace=2
 
 set scrolloff=3       " Always show at least three lines below cursor
@@ -471,7 +486,7 @@ nnoremap gF :tabnew <cfile><cr>
 inoremap <c-j> <cr><esc>ko
 
 " Make
-nnoremap <leader>m :make<cr>
+nnoremap <silent><leader>m :make<cr>
 
 " Autoread or edit
 nnoremap <leader>r :bufdo :edit<cr>
@@ -491,10 +506,12 @@ augroup END
 
 augroup global_filetype
     autocmd!
-    autocmd FileType js,javascript,php,jsx,html,htmldjango,pug,vue,css,sql,mysql setlocal tabstop=2 softtabstop=2 shiftwidth=2 backspace=2
+    autocmd FileType js,ts,php,jsx,html,htmldjango,pug,vue,css,sql,mysql setlocal tabstop=2 softtabstop=2 shiftwidth=2 backspace=2
     autocmd Filetype html,htmldjango,pug,javascript setlocal nowrap 
     autocmd FileType python setlocal foldmethod=indent textwidth=100
     autocmd FileType vim setlocal foldmethod=marker
+    " autocmd FileType javascript set formatprg=prettier\ --stdin
+    " autocmd BufWritePre *.js exe "normal! gggqG\<C-o>\<C-o>"
     autocmd FileType vb setlocal commentstring='\ %s
     let g:vue_disable_pre_processors=1
     autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
