@@ -162,7 +162,7 @@ Plugin 'HerringtonDarkholme/yats.vim' " Typesciprt
 " Plugin 'leafgarland/typescript-vim'
 let g:jsx_ext_required = 0
 
-" Plugin 'dart-lang/dart-vim-plugin'
+Plugin 'dart-lang/dart-vim-plugin'
 " Plugin 'thosakwe/vim-flutter'
 
 " Plugin 'elzr/vim-json'
@@ -291,9 +291,9 @@ nnoremap <silent> <F10> :cclose<cr>
 " nnoremap <silent> <F12> :!phpctags *.php<cr><cr>
 
 syntax enable
-hi Normal guibg=NONE ctermbg=NONE
 set background=dark
 colorscheme gruvbox
+hi Normal guibg=NONE ctermbg=NONE
 set number
 set relativenumber
 set showcmd
@@ -471,6 +471,8 @@ function! Tooglebg()
     endif
 endfunction
 nnoremap <F9> :call Tooglebg()<cr>
+nnoremap <leader><leader>t :hi Normal guibg=NONE ctermbg=NONE<CR>
+nnoremap <leader><leader>d :set background=dark<CR>
 
 " Add ; at end of line
 nnoremap <silent> <buffer> <leader>; mqA;<esc>`q
@@ -490,6 +492,8 @@ nnoremap <silent><leader>m :make<cr>
 
 " Autoread or edit
 nnoremap <leader>r :bufdo :edit<cr>
+
+
 " }}}
 
 " Abbreviations ---------------------- {{{
