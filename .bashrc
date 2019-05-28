@@ -63,7 +63,7 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$HOME/go/bin
-export PATH=$PATH:`yarn --offline global bin`
+export PATH=$PATH:$HOME/.yarn/bin
 #export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 # export JAVA_FONTS="/usr/share/fonts/TTF"
 
