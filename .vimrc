@@ -72,7 +72,7 @@ let g:tmuxline_preset = {
             \'y'    : '#W %R',
             \'z'    : '#H'}
 " Auto completion ------------- {{{
-" Plugin 'mikelue/vim-maven-plugin'
+Plugin 'mikelue/vim-maven-plugin'
 Plugin 'Valloric/YouCompleteMe'
 " let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/.ycm_extra_conf.py'
 let g:EclimFileTypeValidate = 0
@@ -101,6 +101,8 @@ if !exists("g:ycm_semantic_triggers")
   let g:ycm_semantic_triggers = {}
 endif
 let g:ycm_semantic_triggers['typescript'] = ['.']
+"
+" Plugin 'Shougo/echodoc.vim'
 
 Plugin 'davidhalter/jedi-vim' " Python autocompletion
 let g:jedi#completion_enabled = 0
@@ -139,6 +141,13 @@ set omnifunc=ale#completion#OmniFunc
 " Syntax and indentation
 Plugin 'Vimjas/vim-python-pep8-indent'
 " Plugin 'peterhoeg/vim-qml'
+Plugin 'tbastos/vim-lua'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-lua-ftplugin'
+let g:lua_complete_omni = 1
+let g:lua_check_syntax = 1
+let g:lua_complete_dynamic = 1
+let g:lua_define_completion_mappings = 0
 
 " Plugin 'digitaltoad/vim-pug'
 " Plugin 'mustache/vim-mustache-handlebars' 
@@ -379,6 +388,7 @@ nnoremap <silent> <leader>ph :!help.py <cword><cr>
 " Youcompleteme mapping
 nnoremap <leader>gt :YcmCompleter GoTo<cr>
 nnoremap <leader>gT :YcmCompleter GetType<cr>
+nnoremap <leader>gd :YcmCompleter GetDoc<cr>
 nnoremap <leader>yf :YcmCompleter FixIt<cr>
 
 " Mapping esc in insert mode
