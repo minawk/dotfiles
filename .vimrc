@@ -149,21 +149,21 @@ let g:lua_check_syntax = 1
 let g:lua_complete_dynamic = 1
 let g:lua_define_completion_mappings = 0
 
-" Plugin 'digitaltoad/vim-pug'
+Plugin 'digitaltoad/vim-pug'
 " Plugin 'mustache/vim-mustache-handlebars' 
 Plugin 'othree/html5.vim'
 
-" Plugin 'jason0x43/vim-js-indent'
 Plugin 'posva/vim-vue'
+Plugin 'jason0x43/vim-js-indent'
 " Plugin 'othree/javascript-libraries-syntax.vim'
 " Plugin 'othree/yajs.vim'
 Plugin 'pangloss/vim-javascript'
-Plugin 'maxmellon/vim-jsx-pretty'
-Plugin 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'branch': 'release/1.x',
-  \ 'for': [ 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown',
-    \ 'vue', 'lua', 'php', 'python', 'ruby', 'html', 'swift' ] }
+" Plugin 'maxmellon/vim-jsx-pretty'
+" Plugin 'prettier/vim-prettier', {
+"   \ 'do': 'yarn install',
+"   \ 'branch': 'release/1.x',
+"   \ 'for': [ 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown',
+"     \ 'vue', 'lua', 'php', 'python', 'ruby', 'html', 'swift' ] }
 Plugin 'Galooshi/vim-import-js'
 " Plugin 'mxw/vim-jsx'
 
@@ -181,7 +181,7 @@ Plugin 'dart-lang/dart-vim-plugin'
 " Plugin 'captbaritone/better-indent-support-for-php-with-html'
 " Plugin '2072/PHP-Indenting-for-VIm'
 " Plugin 'StanAngeloff/php.vim'
-" Plugin 'hail2u/vim-css3-syntax'
+Plugin 'hail2u/vim-css3-syntax'
 " Plugin 'groenewege/vim-less' " For LESS(dynamic CSS) syntax
 " Plugin 'bfrg/vim-cpp-modern'
 "Plugin 'octol/vim-cpp-enhanced-highlight'
@@ -355,12 +355,12 @@ let g:html_indent_style1 = "inc"
 " Easy moving line mapping
 nnoremap <Leader>ss :sync syntax fromstart<CR>
 
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
+" nnoremap <A-j> :m .+1<CR>==
+" nnoremap <A-k> :m .-2<CR>==
+" inoremap <A-j> <Esc>:m .+1<CR>==gi
+" inoremap <A-k> <Esc>:m .-2<CR>==gi
+" vnoremap <A-j> :m '>+1<CR>gv=gv
+" vnoremap <A-k> :m '<-2<CR>gv=gv
 
 "" Tabularise shortcuts
 nmap <Leader>a= :Tabularize /=<CR>
@@ -450,6 +450,7 @@ nnoremap <silent> ]C :clast<cr>
 
 " Saving as root
 cnoreabbrev wsudo w !sudo tee % > /dev/null<cr>
+cnoreabbrev xsudo x !sudo tee % > /dev/null<cr>
 
 " Tab mapping
 augroup mapping_tab

@@ -65,10 +65,11 @@ local function run_once(cmd_arr)
   end
 end
 
-run_once({ "light-locker"  })
-run_once({ "nm-applet", "pulseaudio --start" }) -- entries must be separated by commas
+-- run_once({ "light-locker"  })
+run_once({ "nm-applet", "pulseaudio --start", "xfce4-power-manager" }) -- entries must be separated by commas
 run_once({ "nitrogen --restore"  })
 run_once({ "compton", "comptray"  })
+run_once({ "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1" })
 
 -- }}}
 
@@ -104,10 +105,12 @@ awful.layout.layouts = {
   awful.layout.suit.tile.left,
   awful.layout.suit.floating,
   awful.layout.suit.max,
+  awful.layout.suit.fair,
+  lain.layout.centerwork,
+  lain.layout.cascade,
   -- awful.layout.suit.max.fullscreen,
-  -- awful.layout.suit.tile.bottom,
   -- awful.layout.suit.tile.top,
-  --awful.layout.suit.fair,
+  -- awful.layout.suit.tile.bottom,
   --awful.layout.suit.fair.horizontal,
   --awful.layout.suit.spiral,
   --awful.layout.suit.spiral.dwindle,
@@ -116,9 +119,7 @@ awful.layout.layouts = {
   --awful.layout.suit.corner.ne,
   --awful.layout.suit.corner.sw,
   --awful.layout.suit.corner.se,
-  --lain.layout.cascade,
   --lain.layout.cascade.tile,
-  --lain.layout.centerwork,
   --lain.layout.centerwork.horizontal,
   --lain.layout.termfair,
   --lain.layout.termfair.center,
@@ -256,8 +257,8 @@ root.buttons(my_table.join(
 globalkeys = my_table.join(
   -- Take a screenshot
   -- https://github.com/lcpz/dots/blob/master/bin/screenshot
-  awful.key({ altkey }, "p", function() os.execute("screenshot") end,
-    {description = "take a screenshot", group = "hotkeys"}),
+  -- awful.key({ modkey }, "Print", function() os.execute("gnome-screenshot -i") end,
+  --   {description = "take a screenshot", group = "hotkeys"}),
 
   -- X screen locker
   awful.key({ altkey, "Control" }, "l", function () os.execute(scrlocker) end,
