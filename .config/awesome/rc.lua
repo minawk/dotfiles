@@ -61,12 +61,12 @@ end
 -- This function will run once every time Awesome is started
 local function run_once(cmd_arr)
   for _, cmd in ipairs(cmd_arr) do
-    awful.spawn.with_shell(string.format("pgrep -u $USER -fx '%s' > /dev/null || (%s)", cmd, cmd))
+    awful.spawn.with_shell(string.format("pgrep -u $USER -fx '%s' > /dev/null || %s", cmd, cmd))
   end
 end
 
 -- run_once({ "light-locker"  })
-run_once({ "nm-applet", "pulseaudio --start", "xfce4-power-manager" }) -- entries must be separated by commas
+run_once({ "nm-applet", "xfce4-power-manager" }) -- entries must be separated by commas
 run_once({ "nitrogen --restore"  })
 run_once({ "compton", "comptray"  })
 run_once({ "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1" })
@@ -106,20 +106,20 @@ awful.layout.layouts = {
   awful.layout.suit.floating,
   awful.layout.suit.max,
   awful.layout.suit.fair,
-  lain.layout.centerwork,
-  lain.layout.cascade,
+  awful.layout.suit.magnifier,
   -- awful.layout.suit.max.fullscreen,
   -- awful.layout.suit.tile.top,
   -- awful.layout.suit.tile.bottom,
   --awful.layout.suit.fair.horizontal,
   --awful.layout.suit.spiral,
   --awful.layout.suit.spiral.dwindle,
-  --awful.layout.suit.magnifier,
   --awful.layout.suit.corner.nw,
   --awful.layout.suit.corner.ne,
   --awful.layout.suit.corner.sw,
   --awful.layout.suit.corner.se,
   --lain.layout.cascade.tile,
+  -- lain.layout.centerwork,
+  -- lain.layout.cascade,
   --lain.layout.centerwork.horizontal,
   --lain.layout.termfair,
   --lain.layout.termfair.center,
@@ -241,6 +241,7 @@ screen.connect_signal("arrange", function (s)
     end
   end
 end)
+
 -- Create a wibox for each screen and add it
 awful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) end)
 -- }}}
@@ -671,7 +672,8 @@ awful.rules.rules = {
   },
 
   -- Titlebars
-  { rule_any = { type = { "dialog", "normal" } }, properties = { titlebars_enabled = false } },
+  { rule_any = { type = { "normal" } }, properties = { titlebars_enabled = false } },
+  { rule_any = { type = { "dialog" } }, properties = { titlebars_enabled = false, floating = true } },
 
   -- Set Firefox to always map on the first tag on screen 1.
   { rule = { class = "Chromium" }, properties = { screen = 1, tag = awful.util.tagnames[2] } },
@@ -692,7 +694,15 @@ client.connect_signal("manage", function (c)
     and not c.size_hints.program_position then
     -- Prevent clients from being unreachable after screen count changes.
     awful.placement.no_offscreen(c)
+  else
+    -- Make screen in middle by default in floating layout
+    if not c.size_hints.user_position and not c.size_hints.program_position and awful.layout.get(c.screen) == awful.layout.suit.floating then
+      awful.placement.no_offscreen(c)
+      awful.placement.no_overlap(c)
+      awful.placement.centered(c.focus)
+    end
   end
+
 end)
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
@@ -717,7 +727,7 @@ client.connect_signal("request::titlebars", function(c)
     end)
     )
 
-  awful.titlebar(c, {size = dpi(16)}) : setup {
+  awful.titlebar(c, {size = dpi(18)}) : setup {
     { -- Left
       awful.titlebar.widget.iconwidget(c),
       buttons = buttons,

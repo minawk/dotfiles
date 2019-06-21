@@ -4,7 +4,7 @@ Xft.antialias:  true
 Xft.autohint: true
 Xft.rgba:       rgb
 Xft.hinting:    true
-Xft.hintstyle:  hintslight
+Xft.hintstyle:  hintfull
 
 URxvt*geometry:                115x40
 !URxvt*font: xft:Liberation Mono:pixelsize=14:antialias=false:hinting=true

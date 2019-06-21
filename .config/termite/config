@@ -5,7 +5,7 @@ bold_is_bright = true
 clickable_url = true
 dynamic_title = true
 # font = Monospace 10
-#font = xos4 Terminus 12px
+# font = xos4 Terminus 12px
 font = RobotoMono Nerd Font 11
 #fullscreen = true
 icon_name = terminal
@@ -39,6 +39,46 @@ size_hints = true
 
 # "off", "left" or "right"
 #scrollbar = right
+
+# Green theme
+# [colors]
+# # special
+# # foreground      = #00bb00
+# # foreground_bold = #00bb00
+# # cursor          = #00bb00
+# # background      = #001100
+
+# # black
+# color0  = #001100
+# color8  = #007700
+
+# # red
+# color1  = #007700
+# color9  = #007700
+
+# # green
+# color2  = #00bb00
+# color10 = #00bb00
+
+# # yellow
+# color3  = #007700
+# color11 = #007700
+
+# # blue
+# color4  = #009900
+# color12 = #009900
+
+# # magenta
+# color5  = #00bb00
+# color13 = #00bb00
+
+# # cyan
+# color6  = #005500
+# color14 = #005500
+
+# # white
+# color7  = #00bb00
+# color15 = #00ff00
 
 [colors]
 foreground          = #d5c4a1

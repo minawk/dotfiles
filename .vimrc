@@ -21,21 +21,21 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'dracula/vim'
 
 " Live editing
-Plugin 'jaxbot/browserlink.vim'
-let g:bl_pagefiletypes=['html', 'javascript', 'php', 'htmldjango']
+" Plugin 'jaxbot/browserlink.vim'
+" let g:bl_pagefiletypes=['html', 'javascript', 'php', 'htmldjango']
 
 " Icon
-Plugin 'ryanoasis/vim-devicons'
+" Plugin 'ryanoasis/vim-devicons'
 
 " My plugin
 Plugin 'dkprice/vim-easygrep'
-Plugin 'KabbAmine/lazyList.vim'
-Plugin 'easymotion/vim-easymotion'
+" Plugin 'KabbAmine/lazyList.vim'
+" Plugin 'easymotion/vim-easymotion'
 
 " Pipe to make vim database client
-Plugin 'vim-scripts/dbext.vim'
-Plugin 'NLKNguyen/pipe.vim' "required for mysql
-Plugin 'NLKNguyen/pipe-mysql.vim'
+" Plugin 'vim-scripts/dbext.vim'
+" Plugin 'NLKNguyen/pipe.vim' "required for mysql
+" Plugin 'NLKNguyen/pipe-mysql.vim'
 
 " Fast coding
 " Plugin 'lyuts/vim-rtags'
@@ -43,14 +43,15 @@ Plugin 'NLKNguyen/pipe-mysql.vim'
 Plugin 'mattn/emmet-vim' " For html and css
 let g:user_emmet_settings={'javascript.jsx': {'extends':'jsx'}}
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'wesQ3/vim-windowswap'
+Plugin 'alvan/vim-closetag'
+" Plugin 'wesQ3/vim-windowswap'
 Plugin 'nelstrom/vim-visual-star-search'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-repeat' " Can repeat plugins actions
 Plugin 'tpope/vim-commentary' " Comment easily. For html emmet can do the job
 " Plugin 'godlygeek/tabular'
-" Plugin 'benmills/vimux'
+Plugin 'benmills/vimux'
 Plugin 'mbbill/undotree'
 packadd! matchit " It ships with Vim. We just enable it.
 
@@ -72,40 +73,47 @@ let g:tmuxline_preset = {
             \'y'    : '#W %R',
             \'z'    : '#H'}
 " Auto completion ------------- {{{
-Plugin 'mikelue/vim-maven-plugin'
-Plugin 'Valloric/YouCompleteMe'
-" let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/.ycm_extra_conf.py'
-let g:EclimFileTypeValidate = 0
-let g:ycm_complete_in_strings = 1 "default 1
-let g:ycm_collect_identifiers_from_comments_and_strings = 1 "get data from string and comments
-let g:ycm_seed_identifiers_with_syntax = 1 "get data from syntax of language
-let g:ycm_add_preview_to_completeopt = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_enable_diagnostic_signs = 0
-let g:ycm_enable_diagnostic_highlighting = 1
-let g:ycm_always_populate_location_list = 1 "default 0
-let g:ycm_open_loclist_on_ycm_diags = 1 "default 1
-let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
-let g:ycm_path_to_python_interpreter = '/usr/bin/python'
-let g:ycm_server_use_vim_stdout = 0 "default 0 (logging to console)
-let g:ycm_server_log_level = 'info' "default info
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_goto_buffer_command = 'same-buffer' "[ 'same-buffer', 'horizontal-split', 'vertical-split', 'new-tab' ]
-let g:ycm_filetype_whitelist = { '*': 1 }
-let g:ycm_key_invoke_completion = '<C-Space>'
-let g:ycm_key_list_stop_completion = ['<C-h>']
-let g:ycm_use_ultisnips_completer = 1 " Default 1, just ensure
-let g:ycm_complete_in_comments = 1 " Completion in comments
+" Plugin 'mikelue/vim-maven-plugin'
+" Plugin 'Valloric/YouCompleteMe'
+" " let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/.ycm_extra_conf.py'
+" let g:EclimFileTypeValidate = 0
+" let g:ycm_complete_in_strings = 1 "default 1
+" let g:ycm_collect_identifiers_from_comments_and_strings = 1 "get data from string and comments
+" let g:ycm_seed_identifiers_with_syntax = 1 "get data from syntax of language
+" let g:ycm_add_preview_to_completeopt = 1
+" let g:ycm_autoclose_preview_window_after_completion = 1
+" let g:ycm_enable_diagnostic_signs = 0
+" let g:ycm_enable_diagnostic_highlighting = 1
+" let g:ycm_always_populate_location_list = 1 "default 0
+" let g:ycm_open_loclist_on_ycm_diags = 1 "default 1
+" let g:ycm_collect_identifiers_from_tags_files = 1 " Let YCM read tags from Ctags file
+" let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+" let g:ycm_server_use_vim_stdout = 0 "default 0 (logging to console)
+" let g:ycm_server_log_level = 'info' "default info
+" let g:ycm_confirm_extra_conf = 0
+" let g:ycm_goto_buffer_command = 'same-buffer' "[ 'same-buffer', 'horizontal-split', 'vertical-split', 'new-tab' ]
+" let g:ycm_filetype_whitelist = { '*': 1 }
+" let g:ycm_key_invoke_completion = '<C-Space>'
+" let g:ycm_key_list_stop_completion = ['<C-h>']
+" let g:ycm_use_ultisnips_completer = 1 " Default 1, just ensure
+" let g:ycm_complete_in_comments = 1 " Completion in comments
 " Typesciprt setting
-if !exists("g:ycm_semantic_triggers")
-  let g:ycm_semantic_triggers = {}
-endif
-let g:ycm_semantic_triggers['typescript'] = ['.']
+" if !exists("g:ycm_semantic_triggers")
+"   let g:ycm_semantic_triggers = {}
+" endif
+" let g:ycm_semantic_triggers['typescript'] = ['.']
 "
-" Plugin 'Shougo/echodoc.vim'
-
-Plugin 'davidhalter/jedi-vim' " Python autocompletion
-let g:jedi#completion_enabled = 0
+Plugin 'Shougo/echodoc.vim'
+if has('nvim')
+  Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plugin  'Shougo/deoplete.nvim'
+  Plugin 'roxma/nvim-yarp'
+  Plugin 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
+" Plugin 'davidhalter/jedi-vim' " Python autocompletion
+" let g:jedi#completion_enabled = 0
 " Plugin 'jmcomets/vim-pony' " Support django project navigation
 " Plugin 'tweekmonster/django-plus.vim'
 Plugin 'tpope/vim-dispatch'
@@ -126,9 +134,15 @@ Plugin 'fatih/vim-go'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter' " Diff
 
+Plugin 'OmniSharp/omnisharp-vim'
+let g:OmniSharp_highlight_types = 2
+let g:OmniSharp_server_stdio = 1
+let g:ale_linters = { 'cs': ['OmniSharp'] }
+Plugin 'Shougo/vimproc.vim'
+
 " Syntax checker
-Plugin 'nvie/vim-flake8'
-let python_highlight_all = 1
+" Plugin 'nvie/vim-flake8'
+" let python_highlight_all = 1
 Plugin 'w0rp/ale'
 let g:ale_set_balloons = 1
 let g:ale_sign_column_always = 1
@@ -139,39 +153,43 @@ let g:ale_completion_enabled = 1
 set omnifunc=ale#completion#OmniFunc
 
 " Syntax and indentation
-Plugin 'Vimjas/vim-python-pep8-indent'
+" Plugin 'Vimjas/vim-python-pep8-indent'
 " Plugin 'peterhoeg/vim-qml'
 Plugin 'tbastos/vim-lua'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-lua-ftplugin'
-let g:lua_complete_omni = 1
-let g:lua_check_syntax = 1
-let g:lua_complete_dynamic = 1
-let g:lua_define_completion_mappings = 0
+" Plugin 'xolox/vim-misc'
+" Plugin 'xolox/vim-lua-ftplugin'
+Plugin 'dag/vim-fish'
+if &shell =~# 'fish$'
+    set shell=sh
+endif
+" let g:lua_complete_omni = 1
+" let g:lua_check_syntax = 1
+" let g:lua_complete_dynamic = 1
+" let g:lua_define_completion_mappings = 0
 
 Plugin 'digitaltoad/vim-pug'
 " Plugin 'mustache/vim-mustache-handlebars' 
 Plugin 'othree/html5.vim'
 
-Plugin 'posva/vim-vue'
-Plugin 'jason0x43/vim-js-indent'
+" Plugin 'posva/vim-vue'
+" Plugin 'jason0x43/vim-js-indent'
 " Plugin 'othree/javascript-libraries-syntax.vim'
 " Plugin 'othree/yajs.vim'
-Plugin 'pangloss/vim-javascript'
+" Plugin 'pangloss/vim-javascript'
 " Plugin 'maxmellon/vim-jsx-pretty'
 " Plugin 'prettier/vim-prettier', {
 "   \ 'do': 'yarn install',
 "   \ 'branch': 'release/1.x',
 "   \ 'for': [ 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown',
 "     \ 'vue', 'lua', 'php', 'python', 'ruby', 'html', 'swift' ] }
-Plugin 'Galooshi/vim-import-js'
+" Plugin 'Galooshi/vim-import-js'
 " Plugin 'mxw/vim-jsx'
 
-Plugin 'HerringtonDarkholme/yats.vim' " Typesciprt
+" Plugin 'HerringtonDarkholme/yats.vim' " Typesciprt
 " Plugin 'leafgarland/typescript-vim'
-let g:jsx_ext_required = 0
+" let g:jsx_ext_required = 0
 
-Plugin 'dart-lang/dart-vim-plugin'
+" Plugin 'dart-lang/dart-vim-plugin'
 " Plugin 'thosakwe/vim-flutter'
 
 " Plugin 'elzr/vim-json'
@@ -181,7 +199,7 @@ Plugin 'dart-lang/dart-vim-plugin'
 " Plugin 'captbaritone/better-indent-support-for-php-with-html'
 " Plugin '2072/PHP-Indenting-for-VIm'
 " Plugin 'StanAngeloff/php.vim'
-Plugin 'hail2u/vim-css3-syntax'
+" Plugin 'hail2u/vim-css3-syntax'
 " Plugin 'groenewege/vim-less' " For LESS(dynamic CSS) syntax
 " Plugin 'bfrg/vim-cpp-modern'
 "Plugin 'octol/vim-cpp-enhanced-highlight'
@@ -310,6 +328,7 @@ set laststatus=2
 set noshowmode " Don't show mode, already shown by powerline plugin.
 set mouse=n " Mouse only on normal mode.
 set synmaxcol=500 " Don't try to hightlight lines longer that 500 caracters
+set pyxversion=3
 
 set incsearch
 set hlsearch

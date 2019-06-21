@@ -37,8 +37,6 @@ map [fullscreen] s adjust_window width
 map [fullscreen] <Tab> toggle_index
 map [fullscreen] j scroll down
 map [fullscreen] k scroll up
-map [fullscreen] h navigate previous
-map [fullscreen] l navigate next
 map i recolor
 map [fullscreen] i recolor
 map f toggle_fullscreen
