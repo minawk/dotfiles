@@ -56,7 +56,8 @@ fi
 export VISUAL=/usr/bin/vim
 export EDITOR='vim'
 export GOPATH=~/go
-export PATH="$PATH:$HOME/.scripts:$HOME/.config/composer/vendor/bin:$HOME/.yarn-global/node_modules/.bin:$HOME/.local/bin"
+export NPM_PACKAGES="$HOME/.npm-packages"
+export PATH="$PATH:$HOME/.scripts:$HOME/.config/composer/vendor/bin:$HOME/.local/bin:$NPM_PACKAGES/bin"
 export QT_QPA_PLATFORMTHEME='qt5ct'
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
