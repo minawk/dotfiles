@@ -145,3 +145,19 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 # source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
+export http_proxy="http://192.168.200.5:808/"
+export ftp_proxy="ftp://192.168.200.5:2121/"
+export rsync_proxy="rsync://192.168.200.5:808/"
+export no_proxy="localhost,192.168.200.*,127.0.0.1"
+export HTTP_PROXY="http://192.168.200.5:808/"
+export FTP_PROXY="ftp://192.168.200.5:2121/"
+export RSYNC_PROXY="rsync://192.168.200.5:808/"
+export NO_PROXY="localhost,192.168.200.*,127.0.0.1"
+export https_proxy="http://192.168.200.5:808/"
+export HTTPS_PROXY="http://192.168.200.5:808/"
+
+###-tns-completion-start-###
+if [ -f /home/minawk/.tnsrc ]; then 
+    source /home/minawk/.tnsrc 
+fi
+###-tns-completion-end-###

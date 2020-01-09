@@ -49,3 +49,7 @@
     background = "#282828"
     foreground = "#ebdbb2"
     timeout = 0
+
+[play_sound]
+    summary = "*"
+    script = ~/.scripts/alert.sh

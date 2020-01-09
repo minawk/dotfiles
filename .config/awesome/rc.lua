@@ -70,6 +70,7 @@ run_once({ "nm-applet", "xfce4-power-manager" }) -- entries must be separated by
 run_once({ "nitrogen --restore"  })
 run_once({ "compton", "comptray"  })
 run_once({ "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1" })
+run_once({ "gnome-settings-daemon" })
 
 -- }}}
 
@@ -518,7 +519,7 @@ end,
 
     --rofi
     awful.key({ modkey, "Control" }, "d", function ()
-      os.execute(string.format("rofi -show drun"))
+      os.execute(string.format("rofi -lines 8 -show drun"))
     end,
     {description = "show rofi", group = "launcher"}),
 

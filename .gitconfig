@@ -7,3 +7,7 @@
 	logg = log --oneline --all --decorate --graph
 [color]
 	branch = auto
+[core]
+	autocrlf = input
+[https]
+	proxy = http://192.168.200.5:808/
